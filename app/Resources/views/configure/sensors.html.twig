@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title">Sensors</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="datatable table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Device ID</th>
+                            <th>Name</th>
+                            <th>Metric</th>
+                            <th>Token</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Device ID</th>
+                            <th>Name</th>
+                            <th>Metric</th>
+                            <th>Token</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for sensor in sensors %}
+                            <tr>
+                                <td>{{ sensor.deviceId }}</td>
+                                <td>{{ sensor.name }}</td>
+                                <td>{{ sensor.metric.name }}</td>
+                                <td>{#{ sensor.accessToken }#}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title">Add Sensor</div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.deviceId) }}
+                        {{ form_widget(form.deviceId) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.metric) }}
+                        {{ form_widget(form.metric) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.submit) }}
+                        {{ form_widget(form.submit) }}
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

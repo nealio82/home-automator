@@ -38,3 +38,8 @@
 
 # Composer PHAR
 /composer.phar
+
+.idea/
+.vagrant/
+ansible/
+Vagrantfile

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title">Devices</div>
+                    </div>
+                </div>
+                <div class="card-body no-padding">
+                    <div class="step tabs-left card-no-padding">
+                        <ul class="nav nav-tabs" role="tablist">
+
+                            {% for room in rooms %}
+
+                                <li role="step"{% if loop.index == 1 %} class="active"{% endif %}>
+
+                                    <a href="#stepv{{ loop.index }}" id="step{{ loop.index }}-vtab" role="tab"
+                                       data-toggle="tab"
+                                       aria-controls="profile" {% if loop.index ==1 %} aria-expanded="true"{% endif %}>
+                                        <div class="icon fa fa-cubes"></div>
+                                        <div class="step-title">
+                                            <div class="title">{{ room.name }}</div>
+                                            <div class="description"></div>
+                                        </div>
+                                    </a>
+
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+                        <div class="tab-content">
+
+                            {% for room in rooms %}
+
+                                <div role="tabpanel" class="tab-pane fade in{% if loop.index == 1 %} active{% endif %}"
+                                     id="stepv{{ loop.index }}"
+                                     aria-labelledby="home-tab">
+
+
+                                    <table class="table table-striped">
+                                        <tbody>
+
+                                        {% for device in room.devices %}
+
+                                            <tr>
+                                                <td>
+                                                    <a href="#">
+                                                        <div class="card {% if device.state == 1 %}green{% else %}red{% endif %} summary-inline">
+                                                            <div class="card-body">
+                                                                <i class="icon fa fa-power-off fa-2x"></i>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><h3>{{ device.name }}</h3></td>
+                                                <td><h5>{{ device.deviceId }}</h5>
+
+                                                    <p>Last state change by nealio82 2 hours ago</p></td>
+                                                <td>
+                                                    <a href="#">
+                                                        <div class="card yellow summary-inline">
+                                                            <div class="card-body">
+                                                                <i class="icon fa fa-clock-o fa-2x"></i>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
